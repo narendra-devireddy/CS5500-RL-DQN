@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Training outputs (large files)
+*.pth
+*.pkl
+*.h5
+*.weights
+
+# Generated plots (optional - uncomment if you don't want to track them)
+# *.png
+# *.jpg
+# *.jpeg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.bak
+
+# Logs
+*.log
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# PyTorch specific
+lightning_logs/
+wandb/
+
+# Temporary files
+*.tmp
+*.temp
