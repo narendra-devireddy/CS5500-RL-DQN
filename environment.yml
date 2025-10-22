@@ -1,0 +1,27 @@
+name: rl-dqn
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core dependencies
+  - python>=3.8
+  - numpy>=1.24.0
+  - matplotlib>=3.7.0
+  
+  # PyTorch (CPU version - change to GPU if needed)
+  - pytorch>=2.0.0
+  - torchvision>=0.15.0
+  
+  # OpenCV
+  - opencv>=4.8.0
+  
+  # Jupyter
+  - jupyter>=1.0.0
+  - ipython>=8.12.0
+  
+  # Gymnasium and Atari dependencies
+  - pip
+  - pip:
+    - gymnasium[atari]>=0.29.1
+    - gymnasium[accept-rom-license]>=0.29.1
+    - ale-py>=0.10.1
