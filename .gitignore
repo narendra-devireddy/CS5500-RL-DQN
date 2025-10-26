@@ -55,3 +55,5 @@ wandb/
 # Temporary files
 *.tmp
 *.temp
+
+*.md
