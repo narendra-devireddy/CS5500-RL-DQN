@@ -170,6 +170,8 @@ def train_policy_gradient(
         'iteration_lengths': iteration_lengths,
         'policy_losses': policy_losses,
         'value_losses': value_losses,
+        'policy_state_dict': agent.policy_net.state_dict(),
+        'value_state_dict': agent.value_net.state_dict() if hasattr(agent, 'value_net') else None,
         'config': {
             'env_name': env_name,
             'num_iterations': num_iterations,
@@ -190,7 +192,7 @@ def train_policy_gradient(
             pickle.dump(results, f)
         print(f"\nResults saved to {save_path}")
     
-    return results
+    return agent, results
 
 
 def main():
@@ -198,7 +200,7 @@ def main():
     
     # Environment
     parser.add_argument('--env', type=str, default='CartPole-v1',
-                        help='Gym environment name (default: CartPole-v1)')
+                        help='Gym environment name (default: CartPole-v1, use LunarLander-v3)')
     
     # Training parameters
     parser.add_argument('--num_iterations', type=int, default=100,

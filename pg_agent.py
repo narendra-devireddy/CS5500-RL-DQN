@@ -138,15 +138,15 @@ class PolicyGradientAgent:
         """
         state_tensor = torch.FloatTensor(state).unsqueeze(0).to(device)
         
-        with torch.no_grad():
-            action_probs = self.policy_net.get_action_probs(state_tensor)
+        # Get action probabilities (need gradients for training)
+        action_probs = self.policy_net.get_action_probs(state_tensor)
         
         # Sample action from probability distribution
         dist = Categorical(action_probs)
         action = dist.sample()
         
         if training:
-            # Store log probability for policy gradient
+            # Store log probability for policy gradient (with gradients!)
             log_prob = dist.log_prob(action)
             self.log_probs.append(log_prob)
             
@@ -235,7 +235,7 @@ class PolicyGradientAgent:
         
         # Convert to tensors
         log_probs = torch.stack(self.log_probs).to(device)
-        advantages_tensor = torch.FloatTensor(advantages).to(device)
+        advantages_tensor = torch.FloatTensor(advantages).to(device).detach()
         returns_tensor = torch.FloatTensor(returns).to(device)
         
         # Policy gradient loss: -E[log π(a|s) * A(s,a)]
